@@ -55,7 +55,7 @@ public class LoginPage extends BaseClass {
         action.type(passWordField, pswd);
         action.JSClick(getDriver(), signInBtnElement);
         Thread.sleep(2000);
-        homePage=new HomePage(driver);
+        homePage=new HomePage(getDriver());
         return homePage;
     }
 
@@ -65,14 +65,14 @@ public class LoginPage extends BaseClass {
         action.type(passWordField, pswd);
         action.click(getDriver(), signInBtnElement);
         Thread.sleep(2000);
-        addressPage=new AddressPage();
+        addressPage=new AddressPage(getDriver());
         return addressPage;
     }
 
     public AccountCreationPage createNewAccount(String newEmail) throws Throwable {
         action.type(emailForNewAccountField, newEmail);
         action.click(getDriver(), createNewAccountbtnField);
-        return new AccountCreationPage();
+        return new AccountCreationPage(driver);
     }
 
 

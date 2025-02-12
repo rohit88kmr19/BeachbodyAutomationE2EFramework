@@ -25,7 +25,7 @@ public  class BaseClass {
 
     public static Properties prop;
     // Declare ThreadLocal Driver
-    public static final ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+    public static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     //    //loadConfig method is to load the configuration
 //    @BeforeSuite(groups = { "Smoke", "Sanity", "Regression" })
@@ -36,8 +36,7 @@ public  class BaseClass {
     public void loadConfig() {
         try {
             prop = new Properties();
-            FileInputStream ip = new FileInputStream(
-                    System.getProperty("user.dir") + "Config/config.properties");
+            FileInputStream ip = new FileInputStream("Config/config.properties");
             prop.load(ip);
 
         } catch (FileNotFoundException e) {
@@ -48,7 +47,7 @@ public  class BaseClass {
     }
 
     public static void setDriver(WebDriver driverRef) {
-        driver.set((RemoteWebDriver) driverRef);
+        driver.set(driverRef);
     }
 
     public static WebDriver getDriver() {
@@ -62,13 +61,14 @@ public  class BaseClass {
     }
 
     public static void down() {
-        if (Objects.nonNull(getDriver())) {
+        if (Objects.nonNull(BaseClass.getDriver())) {
             getDriver().quit();
             unload();
         }
     }
 
     public void launchApp(String browserName) {
+
         WebDriver localDriver;
         // String browserName = prop.getProperty("browser");
         if (browserName.equalsIgnoreCase("Chrome")) {
@@ -76,7 +76,8 @@ public  class BaseClass {
 //            options.addArguments("--guest");
 //            options.addArguments("--start-maximized");
 //            options.addArguments("--remote-allow-origins=*");
-            setDriver(new ChromeDriver());
+            localDriver = new ChromeDriver();
+            setDriver(localDriver);
         } else if (browserName.equalsIgnoreCase("FireFox")) {
 //            FirefoxOptions options = new FirefoxOptions();
 //            options.addArguments("--guest");
@@ -100,7 +101,7 @@ public  class BaseClass {
         //PageLoad TimeOuts
         getDriver().manage().timeouts().pageLoadTimeout
                 (Integer.parseInt(prop.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
-        //Launching the URL
+//        Launching the URL
         getDriver().get(prop.getProperty("url"));
     }
 

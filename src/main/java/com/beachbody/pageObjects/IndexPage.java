@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class IndexPage extends BaseClass {
 
@@ -34,19 +35,20 @@ public class IndexPage extends BaseClass {
 
     private By signInBtn = By.xpath("//a[@class='login']");
     private By myStoreLogo = By.xpath("//img[@class='logo img-responsive']");
-    private By searchProductBox = By.id("id=\"search_query_top");
+    private By searchProductBox = By.id("search_query_top");
     private By searchButton = By.name("submit_search");
 
 
     public LoginPage clickOnSignIn() throws Throwable {
-       WebElement signInElement= getDriver().findElement(signInBtn);
-        action.fluentWait(getDriver(), signInElement, 10);
+       WebElement signInElement= driver.findElement(signInBtn);
+        Assert.assertNotNull(signInElement, "Sign In button not found!");
+        //action.fluentWait(getDriver(), signInElement, 10);
         action.click(getDriver(), signInElement);
-        return new LoginPage(driver);
+        return new LoginPage(getDriver());
     }
 
     public boolean validateLogo() throws Throwable {
-        WebElement myStoreLogoElement = getDriver().findElement(myStoreLogo);
+        WebElement myStoreLogoElement = driver.findElement(myStoreLogo);
         return action.isDisplayed(getDriver(), myStoreLogoElement);
     }
 
@@ -59,7 +61,7 @@ public class IndexPage extends BaseClass {
 
     public SearchResultPage searchProduct(String productName) throws Throwable {
         WebElement searchProductElement = driver.findElement(searchProductBox);
-        WebElement searchButtonElement=driver.findElement(searchButton);
+        WebElement searchButtonElement= driver.findElement(searchButton);
         action.type(searchProductElement, productName);
         action.scrollByVisibilityOfElement(getDriver(), searchButtonElement);
         action.click(getDriver(), searchButtonElement);

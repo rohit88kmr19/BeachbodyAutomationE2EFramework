@@ -1,4 +1,17 @@
 package com.beachbody.pageObjects;
 
-public class SearchResultPage {
+import com.beachbody.actionDriver.Action;
+import com.beachbody.base.BaseClass;
+import org.openqa.selenium.WebDriver;
+
+public class SearchResultPage extends BaseClass {
+
+    Action action = new Action();
+
+    WebDriver driver;
+    public SearchResultPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+
 }
