@@ -6,6 +6,7 @@ import com.beachbody.dataProvider.DataProviders;
 import com.beachbody.pageObjects.HomePage;
 import com.beachbody.pageObjects.IndexPage;
 import com.beachbody.pageObjects.LoginPage;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -28,14 +29,14 @@ public class LoginPageTest extends BaseClass {
     @Test(groups = {"Smoke","Sanity"},dataProvider = "credentials", dataProviderClass = DataProviders.class)
     public void loginTest(String uname, String pswd) throws Throwable {
         Log.startTestCase("loginTest");
-        indexPage= new IndexPage(getDriver());
+        indexPage= new IndexPage();
         Log.info("user is going to click on SignIn");
         loginPage=indexPage.clickOnSignIn();
         Log.info("Enter Username and Password");
         //homePage=loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
         homePage=loginPage.login(uname,pswd,homePage);
         String actualURL=homePage.getCurrURL();
-        String expectedURL="http://automationpractice.com/index.php?controller=my-account";
+        String expectedURL="http://www.automationpractice.pl/index.php?controller=my-account";
         Log.info("Verifying if user is able to login");
         Assert.assertEquals(actualURL, expectedURL);
         Log.info("Login is Sucess");

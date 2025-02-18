@@ -14,42 +14,43 @@ public class IndexPage extends BaseClass {
     Action action = new Action();
 
     WebDriver driver;
-    public IndexPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-//    public IndexPage() {
-//        PageFactory.initElements(getDriver(), this);
+//    public IndexPage(WebDriver driver) {
+//        this.driver =driver;
 //    }
-//    @FindBy(xpath = "//a[@class='login']")
-//    WebElement signINBtn;
-//
-//    @FindBy(xpath = "//img[@class='logo img-responsive']")
-//    private WebElement myStoreLogo;
-//
-//    @FindBy(id="search_query_top")
-//    private WebElement searchProductBox;
-//
-//    @FindBy(name="submit_search")
-//    private WebElement searchButton;
 
-    private By signInBtn = By.xpath("//a[@class='login']");
-    private By myStoreLogo = By.xpath("//img[@class='logo img-responsive']");
-    private By searchProductBox = By.id("search_query_top");
-    private By searchButton = By.name("submit_search");
+    public IndexPage() {
+        PageFactory.initElements(getDriver(), this);
+    }
+    @FindBy(xpath = "//a[@class='login']")
+    WebElement signINBtn;
 
+    @FindBy(xpath = "//img[@class='logo img-responsive']")
+    private WebElement myStoreLogo;
 
-    public LoginPage clickOnSignIn() throws Throwable {
-       WebElement signInElement= driver.findElement(signInBtn);
-        Assert.assertNotNull(signInElement, "Sign In button not found!");
+    @FindBy(id="search_query_top")
+    private WebElement searchProductBox;
+
+    @FindBy(name="submit_search")
+    private WebElement searchButton;
+
+//    private By signInBtn = By.xpath("//a[@class='login']");
+//    private By myStoreLogo = By.xpath("//img[@class='logo img-responsive']");
+//    private By searchProductBox = By.id("search_query_top");
+//    private By searchButton = By.name("submit_search");
+
+    public LoginPage clickOnSignIn() {
+        //WebElement signInElement= driver.findElement(signInBtn);
+       action.explicitWait(getDriver(),signINBtn,5);
+        //Assert.assertNotNull(signInElement, "Sign In button not found!");
         //action.fluentWait(getDriver(), signInElement, 10);
-        action.click(getDriver(), signInElement);
-        return new LoginPage(getDriver());
+        //action.mouseOverElement(getDriver(),signInElement);
+        action.click(getDriver(), signINBtn);
+        return new LoginPage();
     }
 
     public boolean validateLogo() throws Throwable {
-        WebElement myStoreLogoElement = driver.findElement(myStoreLogo);
-        return action.isDisplayed(getDriver(), myStoreLogoElement);
+       // WebElement myStoreLogoElement = driver.findElement(myStoreLogo);
+        return action.isDisplayed(getDriver(), myStoreLogo);
     }
 
 
@@ -60,11 +61,11 @@ public class IndexPage extends BaseClass {
     }
 
     public SearchResultPage searchProduct(String productName) throws Throwable {
-        WebElement searchProductElement = driver.findElement(searchProductBox);
-        WebElement searchButtonElement= driver.findElement(searchButton);
-        action.type(searchProductElement, productName);
-        action.scrollByVisibilityOfElement(getDriver(), searchButtonElement);
-        action.click(getDriver(), searchButtonElement);
+        //WebElement searchProductElement = driver.findElement(searchProductBox);
+       // WebElement searchButtonElement= driver.findElement(searchButton);
+        action.type(searchProductBox, productName);
+        action.scrollByVisibilityOfElement(getDriver(), searchButton);
+        action.click(getDriver(), searchButton);
         Thread.sleep(3000);
         return new SearchResultPage();
     }

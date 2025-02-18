@@ -10,36 +10,36 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends BaseClass {
 
-//    @FindBy(xpath="//span[text()='My wishlists']")
-//    private WebElement myWishList;
-//
-//    @FindBy(xpath = "//span[text()='Order history and details']")
-//    private WebElement orderHistory;
-//
-//    public HomePage() {
-//        PageFactory.initElements(getDriver(), this);
-//    }
-
     Action action = new Action();
 
-    WebDriver driver;
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
+    @FindBy(xpath="//span[text()='My wishlists']")
+    private WebElement myWishList;
+
+    @FindBy(xpath = "//span[text()='Order history and details']")
+    private WebElement orderHistory;
+
+    public HomePage() {
+        PageFactory.initElements(getDriver(), this);
     }
 
-    private By myWishList = By.xpath("//span[text()='My wishlists']");
-    private By orderHistory=By.xpath("//span[text()='Order history and details']");
+//    WebDriver driver;
+//    public HomePage(WebDriver driver) {
+//        this.driver = driver;
+//    }
 
-    WebElement myWishListButton = driver.findElement(myWishList);
-    WebElement orderHistoryButton=driver.findElement(orderHistory);
+//    private By myWishList = By.xpath("//span[text()='My wishlists']");
+//    private By orderHistory=By.xpath("//span[text()='Order history and details']");
+//
+//    WebElement myWishListButton = driver.findElement(myWishList);
+//    WebElement orderHistoryButton=driver.findElement(orderHistory);
 
 
     public boolean validateMyWishList() throws Throwable {
-        return action.isDisplayed(getDriver(), myWishListButton);
+        return action.isDisplayed(getDriver(), myWishList);
     }
 
     public boolean validateOrderHistory() throws Throwable {
-        return action.isDisplayed(getDriver(), orderHistoryButton);
+        return action.isDisplayed(getDriver(), orderHistory);
     }
 
     public String getCurrURL() throws Throwable {

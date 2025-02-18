@@ -27,7 +27,7 @@ public class IndexPageTest extends BaseClass {
     @Test(groups = "Smoke")
     public void verifyLogo() throws Throwable {
         Log.startTestCase("verifyLogo");
-        indexPage= new IndexPage(getDriver());
+        indexPage= new IndexPage();
         boolean result=indexPage.validateLogo();
         Assert.assertTrue(result);
         Log.endTestCase("verifyLogo");
