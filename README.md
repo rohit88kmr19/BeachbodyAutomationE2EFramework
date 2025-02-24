@@ -1,7 +1,7 @@
 ## **BeachBodyE2EFramework by using Page Factory Design Pattern - Test Automation Framework**  
 
 ### **Overview**  
-This project is a **Test Automation Framework** designed for testing the **Beachbody Ecommerce** application. The framework follows the **Page Factory (PF)** design pattern and integrates with 
+This project is a **Test Automation Framework(Hybrid Framework with DDT, Modular Approach)** designed for testing the **Beachbody Ecommerce** application. The framework follows the **Page Factory (PF)** design pattern and integrates with 
 various tools to ensure efficient and scalable test execution.
 
 ## **Project Architecture**  
