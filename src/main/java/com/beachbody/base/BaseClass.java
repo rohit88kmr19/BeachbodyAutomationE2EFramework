@@ -27,6 +27,7 @@ public  class BaseClass {
     // Declare ThreadLocal Driver
     public static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
+
     //    //loadConfig method is to load the configuration
 //    @BeforeSuite(groups = { "Smoke", "Sanity", "Regression" })
 //    public void loadConfig() {
@@ -69,15 +70,14 @@ public  class BaseClass {
 
     public void launchApp(String browserName) {
 
-        WebDriver localDriver;
         // String browserName = prop.getProperty("browser");
         if (browserName.equalsIgnoreCase("Chrome")) {
 //            ChromeOptions options = new ChromeOptions();
 //            options.addArguments("--guest");
 //            options.addArguments("--start-maximized");
 //            options.addArguments("--remote-allow-origins=*");
-            localDriver = new ChromeDriver();
-            setDriver(localDriver);
+            //localDriver = new ChromeDriver();
+            setDriver(new ChromeDriver());
         } else if (browserName.equalsIgnoreCase("FireFox")) {
 //            FirefoxOptions options = new FirefoxOptions();
 //            options.addArguments("--guest");
@@ -91,20 +91,19 @@ public  class BaseClass {
 //            options.addArguments("--remote-allow-origins=*");
             setDriver(new InternetExplorerDriver());
         }
-        //Maximize the screen
-        getDriver().manage().window().maximize();
-        //Delete all the cookies
-        getDriver().manage().deleteAllCookies();
-        //Implicit TimeOuts
-        getDriver().manage().timeouts().implicitlyWait
-                (Integer.parseInt(prop.getProperty("implicitWait")), TimeUnit.SECONDS);
-        //PageLoad TimeOuts
-        getDriver().manage().timeouts().pageLoadTimeout
-                (Integer.parseInt(prop.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
+            //Maximize the screen
+            getDriver().manage().window().maximize();
+            //Delete all the cookies
+            getDriver().manage().deleteAllCookies();
+            //Implicit TimeOuts
+            getDriver().manage().timeouts().implicitlyWait
+                    (Integer.parseInt(prop.getProperty("implicitWait")), TimeUnit.SECONDS);
+            //PageLoad TimeOuts
+            getDriver().manage().timeouts().pageLoadTimeout
+                    (Integer.parseInt(prop.getProperty("pageLoadTimeOut")), TimeUnit.SECONDS);
 //        Launching the URL
-        getDriver().get(prop.getProperty("url"));
-    }
-
+            getDriver().get(prop.getProperty("url"));
+        }
     @AfterSuite(groups = {"Smoke", "Regression", "Sanity"})
     public void afterSuite() {
         // ExtentManager.endReport();
