@@ -129,8 +129,7 @@
           <configuration>
             <!-- Path to your TestNG XML suite file -->
             <suiteXmlFiles>
-              <suiteXmlFile></suiteXmlFile>
-              <suiteXmlFile></suiteXmlFile>
+              <suiteXmlFile>testng.xml</suiteXmlFile>
             </suiteXmlFiles>
           </configuration>
 

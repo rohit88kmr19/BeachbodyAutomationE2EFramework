@@ -43,10 +43,9 @@ public class OrderPage extends BaseClass {
         return finalTotalPrice/100;
     }
 
-    public LoginPage clickOnCheckOut(LoginPage loginPage) throws Throwable {
+    public LoginPage clickOnCheckOut() throws Throwable {
         action.click(getDriver(), proceedToCheckOut);
-        loginPage=new LoginPage();
-        return loginPage;
+        return new LoginPage();
     }
 
 
